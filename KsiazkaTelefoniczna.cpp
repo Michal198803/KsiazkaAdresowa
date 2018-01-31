@@ -360,7 +360,7 @@ void dopiszOsobeDoPliku(Osoba osoba, int numerIdZalogowanegoUsera) {
 		plikTekstowy << osoba.nazwisko << '|';
 		plikTekstowy << osoba.numerTelefonu << '|';
 		plikTekstowy << osoba.email << '|';
-		plikTekstowy << osoba.adres << '|' << endl;
+		plikTekstowy << osoba.adres << endl;
 
 		plikTekstowy.close();
 		cout << endl << "Kontakt zostal dodany" << endl;
@@ -492,7 +492,7 @@ void zmienDaneOsoby(vector<Osoba>&osoby) {
 			plik.getline(nazwisko, 25, '|');
 			plik.getline(email, 100, '|');
 			plik.getline(telefon, 25, '|');
-			plik.getline(adres, 25);
+			plik.getline(adres, 100);
 
 			for (int i = 0; i < osoby.size(); i++) {
 				if (osoby[i].id == atoi(idDoZmianyString.c_str())) {
@@ -525,27 +525,32 @@ void zmienDaneOsoby(vector<Osoba>&osoby) {
 
 				case 1:
 					cout << "Wprowadz nowe imie:  ";
-					cin >> nazwa;
+
+					cin.getline(nazwa, 25);
 					osoby[indexZmianyVectora].imie = nazwa;
 					break;
 				case 2:
 					cout << "Wprowadz nowe nazwisko:  ";
-					cin >> nazwisko;
+
+					cin.getline(nazwisko, 25);
 					osoby[indexZmianyVectora].nazwisko = nazwisko;
 					break;
 				case 4:
 					cout << "Wprowadz nowy email:  ";
-					cin >> email;
+
+					cin.getline(email, 100);
 					osoby[indexZmianyVectora].email = email;
 					break;
 				case 3:
 					cout << "Wprowadz nowy telefon:  ";
-					cin >> telefon;
+
+					cin.getline(telefon, 25);
 					osoby[indexZmianyVectora].numerTelefonu = telefon;
 					break;
 				case 5:
 					cout << "Wprowadz nowy adres:  ";
-					cin >> adres;
+
+					cin.getline(adres, 100);
 					osoby[indexZmianyVectora].adres = adres;
 					break;
 
@@ -555,13 +560,13 @@ void zmienDaneOsoby(vector<Osoba>&osoby) {
 				}
 				plikTemp << id << "|" << idUsera << "|" << nazwa << "|"
 						<< nazwisko << "|" << telefon << "|" << email << "|"
-						<< adres << '|' << '\n';
+						<< adres << '\n';
 				zmiana = true;
 
 			} else if (id[0] != '\000') {
 				plikTemp << id << "|" << idUsera << "|" << nazwa << "|"
 						<< nazwisko << "|" << telefon << "|" << email << "|"
-						<< adres << '|' << '\n';
+						<< adres << '\n';
 			}
 
 		}
@@ -582,8 +587,7 @@ void zmienDaneOsoby(vector<Osoba>&osoby) {
 
 		if (id[0] != '\000') {
 			plik << id << "|" << idUsera << "|" << nazwa << "|" << nazwisko
-					<< "|" << telefon << "|" << email << "|" << adres << '|'
-					<< '\n';
+					<< "|" << telefon << "|" << email << "|" << adres << '\n';
 		}
 	}
 	plikTemp.close();
